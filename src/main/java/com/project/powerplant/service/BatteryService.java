@@ -5,11 +5,13 @@ import com.project.powerplant.entity.Battery;
 import com.project.powerplant.repo.BatteryRepo;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 @Transactional
@@ -25,6 +27,18 @@ public class BatteryService {
         batteryRepo.saveAndFlush(map);
 
     }
+
+    public List<BatteryDTO> getBatteries(String startPC ,String endPC) throws Exception{
+        List<Battery> batteryList=batteryRepo.getBatteryByPostCodeRange(startPC,endPC);
+        List<BatteryDTO> map=modelMapper.map(batteryList,new TypeToken<List<BatteryDTO>>(){}.getType());
+        return (map);
+    }
+
+
+
+
+
+
 
 }
 

@@ -3,9 +3,9 @@ package com.project.powerplant.dto;
 public class BatteryDTO {
     private String name;
     private String postCode;
-    private String wattCapacity;
+    private double wattCapacity;
 
-    public BatteryDTO(String name, String postCode, String wattCapacity) {
+    public BatteryDTO(String name, String postCode, double wattCapacity) {
         this.name = name;
         this.postCode = postCode;
         this.wattCapacity = wattCapacity;
@@ -30,11 +30,11 @@ public class BatteryDTO {
         this.postCode = postCode;
     }
 
-    public String getWattCapacity() {
+    public double getWattCapacity() {
         return wattCapacity;
     }
 
-    public void setWattCapacity(String wattCapacity) {
+    public void setWattCapacity(double wattCapacity) {
         this.wattCapacity = wattCapacity;
     }
 }
