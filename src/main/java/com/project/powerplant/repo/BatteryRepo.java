@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface BatteryRepo extends JpaRepository<Battery,Integer> {
 
-    @Query(value = "SELECT * FROM battery_details WHERE post_code BETWEEN ?1 AND ?2",nativeQuery = true)
+    @Query(value = "SELECT * FROM battery_details WHERE post_code BETWEEN ?1 AND ?2 ORDER BY NAME",nativeQuery = true)
     List<Battery> getBatteryByPostCodeRange(String sPC, String ePC);
 
 
