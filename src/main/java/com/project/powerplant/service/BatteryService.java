@@ -28,9 +28,16 @@ public class BatteryService {
 
     }
 
+    //FIXME: Dont use TypeToken
     public List<BatteryDTO> getBatteries(String startPC ,String endPC) throws Exception{
         List<Battery> batteryList=batteryRepo.getBatteryByPostCodeRange(startPC,endPC);
-        List<BatteryDTO> map=modelMapper.map(batteryList,new TypeToken<List<BatteryDTO>>(){}.getType());
+//        List<BatteryDTO> map=modelMapper.map(batteryList,new TypeToken<List<BatteryDTO>>(){}.getType());
+        // create empty BatteryDTO list
+        // write for loop to iterate through batteryList
+        // convert one by one and insert to empty BatteryDTO list
+        // dont return BatteryDto list
+        // calculate average and total watt capacity
+        // create new SummaryDTO object for this
         return (map);
     }
 
