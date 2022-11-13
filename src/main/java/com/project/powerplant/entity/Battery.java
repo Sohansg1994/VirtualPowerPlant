@@ -14,7 +14,7 @@ public class Battery {
     @Column(nullable = false)
     private String postCode;
     @Column(nullable = false)
-    private String wattCapacity;
+    private double wattCapacity;
 
 
     public Battery(String name, String postCode, String wattCapacity) {

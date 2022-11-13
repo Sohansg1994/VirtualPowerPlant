@@ -14,11 +14,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class BatteryService {
     @Autowired
     private BatteryRepo batteryRepo;
+
     @Autowired
     private ModelMapper modelMapper;
 
     public String saveBatteries(BatteryDTO batteryDTO){
-        batteryRepo.save(modelMapper.map(batteryDTO, Battery.class));
+        Battery map = modelMapper.map(batteryDTO, Battery.class);
+        batteryRepo.saveAndFlush(map);
+        // return id
         return VarList.RSP_SUCCESS;
     }
 

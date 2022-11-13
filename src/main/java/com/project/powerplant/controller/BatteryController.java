@@ -17,25 +17,38 @@ public class BatteryController {
     @Autowired
     BatteryService batteryService;
 
-    @Autowired
-    ResponseDTO responseDTO;
+//    @Autowired
+//    ResponseDTO responseDTO;
 
-    @PostMapping(value = "/saveBatteries")
+
+    // GET /{id}
+    // UPDATE /{id}
+    // DELETE
+    // POST
+    // /
+
+    @PostMapping(value = "/")
     public ResponseEntity saveBatteries(@RequestBody BatteryDTO batteryDTO){
-        try{
-            responseDTO.setCode(VarList.RSP_SUCCESS);
-            responseDTO.setMassage("SUCCESS");
-            responseDTO.setContent(batteryDTO);
-            return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
 
-        }catch(Exception e){
-            responseDTO.setCode(VarList.RSP_FAIL);
-            responseDTO.setMassage("ERROR");
-            responseDTO.setContent(null);
-            return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
+        batteryService.saveBatteries(batteryDTO);
+        ResponseDto responseDTO = new ResponseDTO("success", responesboject);
+        return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
 
-        }
-
+//        try{
+//            ResponseDto responseDTO = new ResponseDTO("success", responesboject);
+////            responseDTO.setCode(VarList.RSP_SUCCESS);
+////            responseDTO.setMassage("SUCCESS");
+////            responseDTO.setContent(batteryDTO);
+//            return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
+//
+//        }catch(Exception e){
+//            responseDTO.setCode(VarList.RSP_FAIL);
+//            responseDTO.setMassage("ERROR");
+//            responseDTO.setContent(null);
+//            return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
+//
+//        }
+//
 
     }
 
