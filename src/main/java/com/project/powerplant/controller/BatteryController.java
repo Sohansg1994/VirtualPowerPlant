@@ -2,13 +2,14 @@ package com.project.powerplant.controller;
 
 import com.project.powerplant.dto.BatteryDTO;
 import com.project.powerplant.dto.ResponseDTO;
+import com.project.powerplant.dto.SummaryDTO;
 import com.project.powerplant.service.BatteryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 @RestController
 @RequestMapping(value = "api/v1/battery")
@@ -32,17 +33,12 @@ public class BatteryController {
         }
     }
 
-    //FIXME: use reuqest parameters instead of path variables
-    // ex - api/v1/battery?spc=80120&epc=80140
-    // refer to - https://medium.com/@fullsour/when-should-you-use-path-variable-and-query-parameter-a346790e8a6d
-   @GetMapping(value = "/{sPC}/{ePC}")
-    public ResponseEntity getBatteries(@PathVariable String sPC,@PathVariable String ePC){
+   @GetMapping()
+    public ResponseEntity getBatteries(@RequestParam String sPC,@RequestParam String ePC){
         ResponseDTO responseDTO ;
         try{
-            List<BatteryDTO> batteryDTOList=batteryService.getBatteries(sPC,ePC);
-            //TODO: should return SummaryDTO instead
-
-            responseDTO=new ResponseDTO("SUCCESS",batteryDTOList);
+            SummaryDTO summaryDTO=batteryService.getBatteries(sPC,ePC);
+            responseDTO=new ResponseDTO("SUCCESS",summaryDTO);
             return new ResponseEntity(responseDTO,HttpStatus.ACCEPTED);
 
         }catch (Exception e){
