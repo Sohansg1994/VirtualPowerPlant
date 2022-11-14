@@ -48,8 +48,36 @@ public class BatteryController {
         }
     }
 
+    @PutMapping()
+    public ResponseEntity getBatteries(@RequestParam int batteryId,@RequestBody BatteryDTO batteryDTO){
+        ResponseDTO responseDTO;
+        try {
+            batteryService.updateBattery(batteryId,batteryDTO);
+            responseDTO = new ResponseDTO("success", batteryDTO);
+            return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
 
+        }catch (Exception e){
+            responseDTO=new ResponseDTO("Error",null);
+            return new ResponseEntity(responseDTO, HttpStatus.NOT_ACCEPTABLE);
 
+        }
+    }
+
+    @DeleteMapping()
+    public ResponseEntity deleteBattery(@RequestParam int batteryId){
+        ResponseDTO responseDTO;
+        try {
+            batteryService.deleteBattery(batteryId);
+            responseDTO = new ResponseDTO("success", null);
+            return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
+
+        }catch (Exception e){
+            responseDTO=new ResponseDTO("Error",null);
+            return new ResponseEntity(responseDTO, HttpStatus.NOT_ACCEPTABLE);
+
+        }
+
+    }
 
 
 

@@ -4,14 +4,11 @@ import com.project.powerplant.dto.BatteryDTO;
 import com.project.powerplant.dto.SummaryDTO;
 import com.project.powerplant.entity.Battery;
 import com.project.powerplant.repo.BatteryRepo;
-
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,10 +38,20 @@ public class BatteryService {
         }
         averageWattCapacity=totalWattCapacity/batteryList.size();
         SummaryDTO summaryDTO=new SummaryDTO(batteryDTOList,totalWattCapacity,averageWattCapacity);
-
         return (summaryDTO);
     }
 
+   public void updateBattery(int batteryId,BatteryDTO batteryDTO) throws Exception{
+        Battery battery=batteryRepo.getReferenceById(batteryId);
+        battery.setName(batteryDTO.getName());
+        battery.setPostCode(batteryDTO.getPostCode());
+        battery.setWattCapacity(batteryDTO.getWattCapacity());
+        batteryRepo.save(battery);
+   }
+
+    public void deleteBattery(int batteryId) throws Exception{
+        batteryRepo.deleteById(batteryId);
+    }
 
 
 
